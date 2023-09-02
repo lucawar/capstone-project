@@ -32,7 +32,7 @@ public class UserTest {
 
 	@Test
 	public void testPayloadNonValido() throws Exception {
-		NewUserPayload PayloadNonValido = new NewUserPayload("", "", "", "lucaemail.it", "luca");
+		NewUserPayload PayloadNonValido = new NewUserPayload("", "", "", "lucaemail.it", "luca", "39+324345543");
 
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ZjIxOGQ2Yy1mMzA3LTRmYTQtYjZjNC02NmEyNjg1NjVmZmUiLCJpYXQiOjE2OTM2MDg3NjQsImV4cCI6MTY5NDIxMzU2NH0.nIqeE7FFImI-JLj4xdSSgsmjpEz7ZWoo21URh1GTHe4";
 
@@ -52,7 +52,7 @@ public class UserTest {
 	@Test
 	public void testValidPayloadShouldReturnCreated() throws Exception {
 		NewUserPayload PayloadValido = new NewUserPayload("lucaGuerra", "Luca", "Guerra", "luca.guerra@yahoo.it",
-				"StrongPassword123!");
+				"StrongPassword123!", "39+324345543");
 
 		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ZjIxOGQ2Yy1mMzA3LTRmYTQtYjZjNC02NmEyNjg1NjVmZmUiLCJpYXQiOjE2OTM2MDg3NjQsImV4cCI6MTY5NDIxMzU2NH0.nIqeE7FFImI-JLj4xdSSgsmjpEz7ZWoo21URh1GTHe4";
 

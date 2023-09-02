@@ -25,7 +25,7 @@ public class UsersService {
 			throw new BadRequestException("L'email " + body.getEmail() + " è gia stata utilizzata");
 		});
 		User newUser = new User(body.getUsername(), body.getName(), body.getSurname(), body.getEmail(),
-				body.getPassword());
+				body.getPassword(), body.getNumeroTelefono());
 		return userRepository.save(newUser);
 	}
 
@@ -52,6 +52,7 @@ public class UsersService {
 		found.setName(body.getName());
 		found.setSurname(body.getSurname());
 		found.setEmail(body.getEmail());
+		found.setNumeroTelefono(body.getNumeroTelefono());
 		return userRepository.save(found);
 	}
 

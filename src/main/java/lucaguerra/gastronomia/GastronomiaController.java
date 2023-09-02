@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import lucaguerra.enums.TipoGastronomia;
+import lucaguerra.exceptions.NotFoundException;
+
 @RestController
 @RequestMapping("/gastronomia")
 public class GastronomiaController {
@@ -55,5 +58,14 @@ public class GastronomiaController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteGastronomia(@PathVariable UUID gastronomiaId) {
 		gs.findByIdAndDelete(gastronomiaId);
+	}
+
+	@GetMapping("/cerca")
+	public Page<Gastronomia> cercaGastronomia(@RequestParam(required = false) String nome,
+			@RequestParam(required = false) TipoGastronomia tipo, @RequestParam(required = false) String indirizzo,
+			@RequestParam(required = false) Integer prezzoMin, @RequestParam(required = false) Integer prezzoMax,
+			@RequestParam(defaultValue = "0") Integer page, @RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "id") String sortBy) throws NotFoundException {
+		return gs.searchGastronomia(nome, tipo, indirizzo, prezzoMin, prezzoMax, page, size, sortBy);
 	}
 }

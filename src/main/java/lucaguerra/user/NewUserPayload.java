@@ -26,5 +26,7 @@ public class NewUserPayload {
 	@NotNull(message = "La password è obbligatoria")
 	@StrongPassword(message = "La password non soddisfa i requisiti di sicurezza")
 	private String password;
+	@NotNull(message = "Il numero di telefono è obbligatorio")
+	private String numeroTelefono;
 
 }

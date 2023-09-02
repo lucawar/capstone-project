@@ -24,13 +24,13 @@ public class Gastronomia {
 	private String nome;
 	private String indirizzo;
 	private String telefono;
-	private String prezzoMedio;
+	private int prezzoMedio;
 	@Enumerated(EnumType.STRING)
 	private TipoGastronomia tipoGastronomia;
 	private String imageUrl;
 
-	public Gastronomia(String nome, String indirizzo, String telefono, String prezzoMedio,
-			TipoGastronomia tipoGastronomia, String imageUrl) {
+	public Gastronomia(String nome, String indirizzo, String telefono, int prezzoMedio, TipoGastronomia tipoGastronomia,
+			String imageUrl) {
 
 		this.nome = nome;
 		this.indirizzo = indirizzo;

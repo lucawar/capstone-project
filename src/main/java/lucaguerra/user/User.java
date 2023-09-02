@@ -39,11 +39,12 @@ public class User implements UserDetails {
 	private String email;
 	@JsonIgnore
 	private String password;
+	private String numeroTelefono;
 	@Enumerated(EnumType.STRING)
 	private Role role;
 
 	@SuppressWarnings("static-access")
-	public User(String username, String name, String surname, String email, String password) {
+	public User(String username, String name, String surname, String email, String password, String numeroTelefono) {
 
 		this.username = username;
 		this.name = name;
@@ -51,6 +52,7 @@ public class User implements UserDetails {
 		this.email = email;
 		this.password = password;
 		this.role = role.USER;
+		this.numeroTelefono = numeroTelefono;
 	}
 
 	@Override

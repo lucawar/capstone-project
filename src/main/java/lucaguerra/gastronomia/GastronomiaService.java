@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.exceptions.NotFoundException;
 
 @Service
@@ -60,4 +61,13 @@ public class GastronomiaService {
 		Gastronomia found = this.findById(id);
 		gr.delete(found);
 	}
+
+	// RICERCA PER NOME,TIPO,INDIRIZZO,RANGE DI PREZZO e ORDINA PER PREZZO MEDIO
+
+	public Page<Gastronomia> searchGastronomia(String nome, TipoGastronomia tipo, String indirizzo, Integer prezzoMin,
+			Integer prezzoMax, int page, int size, String sortBy) throws NotFoundException {
+		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
+		return gr.searchGastronomia(nome, tipo, indirizzo, prezzoMin, prezzoMax, pageable);
+	}
+
 }
