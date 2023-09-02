@@ -1,6 +1,6 @@
 package lucaguerra.enums;
 
-public enum TipoCategorieAlimentari {
+public enum TipoGastronomia {
 
 	RISTORANTE, FORNO, ENOTECA, GELATERIA, OSTERIA, CAFFETTERIA, MERCATO
 }
