@@ -1,4 +1,4 @@
-package lucaguerra.payloads;
+package lucaguerra.user;
 
 import java.util.UUID;
 

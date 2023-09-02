@@ -14,9 +14,9 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lucaguerra.entities.User;
 import lucaguerra.exceptions.UnauthorizedException;
-import lucaguerra.service.UsersService;
+import lucaguerra.user.User;
+import lucaguerra.user.UsersService;
 
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter {

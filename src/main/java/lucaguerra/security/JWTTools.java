@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
-import lucaguerra.entities.User;
 import lucaguerra.exceptions.UnauthorizedException;
+import lucaguerra.user.User;
 
 @Component
 public class JWTTools {

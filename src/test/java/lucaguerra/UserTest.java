@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.MvcResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lucaguerra.payloads.NewUserPayload;
+import lucaguerra.user.NewUserPayload;
 
 @SpringBootTest
 @AutoConfigureMockMvc

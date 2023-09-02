@@ -1,4 +1,4 @@
-package lucaguerra.service;
+package lucaguerra.user;
 
 import java.util.List;
 import java.util.UUID;
@@ -10,11 +10,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import lucaguerra.entities.User;
 import lucaguerra.exceptions.BadRequestException;
 import lucaguerra.exceptions.NotFoundException;
-import lucaguerra.payloads.NewUserPayload;
-import lucaguerra.repositories.UserRepository;
 
 @Service
 public class UsersService {

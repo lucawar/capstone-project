@@ -1,4 +1,4 @@
-package lucaguerra.entities;
+package lucaguerra.user;
 
 import java.util.Collection;
 import java.util.List;

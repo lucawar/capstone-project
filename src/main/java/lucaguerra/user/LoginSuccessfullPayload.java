@@ -1,4 +1,4 @@
-package lucaguerra.payloads;
+package lucaguerra.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

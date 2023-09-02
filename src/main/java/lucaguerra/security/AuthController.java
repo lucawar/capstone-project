@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import lucaguerra.entities.User;
 import lucaguerra.exceptions.UnauthorizedException;
-import lucaguerra.payloads.LoginSuccessfullPayload;
-import lucaguerra.payloads.NewUserPayload;
-import lucaguerra.payloads.UserLoginPayload;
-import lucaguerra.service.UsersService;
+import lucaguerra.user.LoginSuccessfullPayload;
+import lucaguerra.user.NewUserPayload;
+import lucaguerra.user.User;
+import lucaguerra.user.UserLoginPayload;
+import lucaguerra.user.UsersService;
 
 @RestController
 @RequestMapping("/auth")
