@@ -55,12 +55,17 @@ public class PrenotazioneService {
 	public void findByIdAndDelete(UUID id) throws NotFoundException {
 		Prenotazione found = this.findById(id);
 		pr.delete(found);
+
 	}
+
+	// !!!!!!!!!!!!!!!!IMPORTANTE!!!!!!!!!!!!!!!!
+	// GESTIRE LE ECCEZIONI, RICONTROLLARE NotFoundException
 
 	// TROVA SOLO PRENOTAZIONI DELL'UTENTE LOGGATO
 	public Page<Prenotazione> trovaPrenotazioniPerUtente(UUID userId, int page, int size, String sortBy) {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 		return pr.findByUserId(userId, pageable);
+
 	}
 
 }
