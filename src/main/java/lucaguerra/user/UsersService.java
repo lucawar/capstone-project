@@ -12,12 +12,16 @@ import org.springframework.stereotype.Service;
 
 import lucaguerra.exceptions.BadRequestException;
 import lucaguerra.exceptions.NotFoundException;
+import lucaguerra.prenotazione.PrenotazioneRepository;
 
 @Service
 public class UsersService {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	PrenotazioneRepository prenotazioneRepository;
 
 	// SALVA NUOVO UTENTE + ECCEZIONE SE VIENE USATA LA STESSA EMAIL
 	public User save(NewUserPayload body) {
@@ -66,4 +70,5 @@ public class UsersService {
 		return userRepository.findByEmail(email)
 				.orElseThrow(() -> new NotFoundException("Utente con email " + email + " non trovato"));
 	}
+
 }

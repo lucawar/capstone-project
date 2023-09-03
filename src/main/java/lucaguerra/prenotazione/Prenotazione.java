@@ -1,7 +1,10 @@
 package lucaguerra.prenotazione;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,17 +27,21 @@ public class Prenotazione {
 	@GeneratedValue
 	private UUID id;
 	private LocalDate dataPrenotazione;
+	private LocalTime oraPrenotazione;
 	private String nota;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonBackReference
 	private User user;
 	@ManyToOne
 	@JoinColumn(name = "gastronomia_id", nullable = false)
 	private Gastronomia Gastronomia;
 
-	public Prenotazione(LocalDate dataPrenotazione, String nota, User user, Gastronomia gastronomia) {
+	public Prenotazione(LocalDate dataPrenotazione, LocalTime oraPrenotazione, String nota, User user,
+			Gastronomia gastronomia) {
 
 		this.dataPrenotazione = dataPrenotazione;
+		this.oraPrenotazione = oraPrenotazione;
 		this.nota = nota;
 		this.user = user;
 		Gastronomia = gastronomia;

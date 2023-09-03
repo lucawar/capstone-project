@@ -18,12 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import lucaguerra.prenotazione.PrenotazioneService;
+
 @RestController
 @RequestMapping("/users")
 public class UsersController {
 
 	@Autowired
 	UsersService userService;
+
+	@Autowired
+	PrenotazioneService ps;
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -33,6 +38,7 @@ public class UsersController {
 	}
 
 	@GetMapping("")
+	@PreAuthorize("hasAuthority('ADMIN')")
 	public Page<User> getUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
 			@RequestParam(defaultValue = "id") String sortBy) {
 		return userService.find(page, size, sortBy);
@@ -56,4 +62,5 @@ public class UsersController {
 	public void deleteUser(@PathVariable UUID userId) {
 		userService.findByIdAndDelete(userId);
 	}
+
 }
