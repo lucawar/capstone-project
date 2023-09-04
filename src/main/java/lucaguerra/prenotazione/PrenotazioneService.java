@@ -76,7 +76,8 @@ public class PrenotazioneService {
 	}
 
 	// FILTRA PRENOTAZIONI PER DATA SOLO PER L'UTENTE LOGGATO
-	public Page<Prenotazione> findUserPrenotazioniByDate(UUID userId, LocalDate dataPrenotazione, int page, int size) {
+	public Page<Prenotazione> findUserPrenotazioniByDate(UUID userId, LocalDate dataPrenotazione, int page, int size)
+			throws NotFoundException {
 		Pageable pageable = PageRequest.of(page, size, Sort.by("dataPrenotazione"));
 		return pr.findByUserIdAndDataPrenotazione(userId, dataPrenotazione, pageable);
 	}

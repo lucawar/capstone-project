@@ -5,6 +5,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,6 +62,20 @@ public class UsersController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteUser(@PathVariable UUID userId) {
 		userService.findByIdAndDelete(userId);
+	}
+
+	// AGGIUNGI GASTRONOMIA AI PREFERITI
+	@PostMapping("/aggiungiPreferiti/{gastronomiaId}")
+	public ResponseEntity<?> addFavorite(@PathVariable UUID gastronomiaId) {
+		userService.addFavoriteGastronomia(gastronomiaId);
+		return ResponseEntity.ok("Gastronomia aggiunta ai preferiti");
+	}
+
+	// RIMUOVI GASTRONOMIA DAI PREFERITI
+	@DeleteMapping("/rimuoviPreferiti/{gastronomiaId}")
+	public ResponseEntity<?> removeFavorite(@PathVariable UUID gastronomiaId) {
+		userService.removeFavoriteGastronomia(gastronomiaId);
+		return ResponseEntity.ok("Gastronomia rimossa dai preferiti");
 	}
 
 }

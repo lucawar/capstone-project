@@ -8,10 +8,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import lucaguerra.exceptions.BadRequestException;
 import lucaguerra.exceptions.NotFoundException;
+import lucaguerra.gastronomia.Gastronomia;
+import lucaguerra.gastronomia.GastronomiaRepository;
 import lucaguerra.prenotazione.PrenotazioneRepository;
 
 @Service
@@ -22,6 +26,9 @@ public class UsersService {
 
 	@Autowired
 	PrenotazioneRepository prenotazioneRepository;
+
+	@Autowired
+	GastronomiaRepository gr;
 
 	// SALVA NUOVO UTENTE + ECCEZIONE SE VIENE USATA LA STESSA EMAIL
 	public User save(NewUserPayload body) {
@@ -69,6 +76,34 @@ public class UsersService {
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email)
 				.orElseThrow(() -> new NotFoundException("Utente con email " + email + " non trovato"));
+	}
+
+	// PRENDI L'ID DELL'UTENTE LOGGATO
+	public User getCurrentUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String currentUserName = authentication.getName();
+		return userRepository.findByEmail(currentUserName)
+				.orElseThrow(() -> new NotFoundException("Utente con email " + currentUserName + " non trovato"));
+	}
+
+	// AGGIUNGI GASTRONOMIA AI PREFERITI
+	public void addFavoriteGastronomia(UUID gastronomiaId) {
+		User user = this.getCurrentUser();
+		Gastronomia gastronomia = gr.findById(gastronomiaId)
+				.orElseThrow(() -> new NotFoundException("Gastronomia non trovata con l'ID: " + gastronomiaId));
+
+		user.getGastronomie_preferite().add(gastronomia);
+		userRepository.save(user);
+	}
+
+	// RIMUOVI GASTRONOMIA DAI PREFERITI
+	public void removeFavoriteGastronomia(UUID gastronomiaId) {
+		User user = this.getCurrentUser();
+		Gastronomia gastronomia = gr.findById(gastronomiaId)
+				.orElseThrow(() -> new NotFoundException("Gastronomia non trovata con l'ID: " + gastronomiaId));
+
+		user.getGastronomie_preferite().remove(gastronomia);
+		userRepository.save(user);
 	}
 
 }
