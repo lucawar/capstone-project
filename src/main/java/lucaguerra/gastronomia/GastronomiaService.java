@@ -63,7 +63,6 @@ public class GastronomiaService {
 	}
 
 	// RICERCA PER NOME,TIPO,INDIRIZZO,RANGE DI PREZZO e ORDINA PER PREZZO MEDIO
-
 	public Page<Gastronomia> searchGastronomia(String nome, TipoGastronomia tipo, String indirizzo, Integer prezzoMin,
 			Integer prezzoMax, int page, int size, String sortBy) throws NotFoundException {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));

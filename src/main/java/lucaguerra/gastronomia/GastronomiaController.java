@@ -60,6 +60,7 @@ public class GastronomiaController {
 		gs.findByIdAndDelete(gastronomiaId);
 	}
 
+	// RICERCA PER NOME,TIPO,INDIRIZZO,RANGE DI PREZZO e ORDINA PER PREZZO MEDIO
 	@GetMapping("/cerca")
 	public Page<Gastronomia> cercaGastronomia(@RequestParam(required = false) String nome,
 			@RequestParam(required = false) TipoGastronomia tipo, @RequestParam(required = false) String indirizzo,

@@ -16,6 +16,8 @@
 //import lucaguerra.gastronomia.GastronomiaRepository;
 //import lucaguerra.prenotazione.Prenotazione;
 //import lucaguerra.prenotazione.PrenotazioneRepository;
+//import lucaguerra.recensione.Recensione;
+//import lucaguerra.recensione.RecensioneRepository;
 //import lucaguerra.security.AuthController;
 //import lucaguerra.user.NewUserPayload;
 //import lucaguerra.user.User;
@@ -36,6 +38,9 @@
 //	@Autowired
 //	PrenotazioneRepository pr;
 //
+//	@Autowired
+//	RecensioneRepository rp;
+//
 //	@Override
 //	public void run(String... args) throws Exception {
 //		Faker faker = new Faker(new Locale("it"));
@@ -55,7 +60,7 @@
 //				ac.saveUser(user);
 //
 //			}
-//System.out.println("User creati");
+//			System.out.println("User creati");
 //		}
 //
 //		for (int i = 0; i < 10; i++) {
@@ -86,5 +91,17 @@
 //		}
 //
 //		System.out.println("Prenotazioni create");
+//
+//		for (User user : utentiDb) {
+//			for (Gastronomia gastronomia : gastronomiaRepository.findAll()) {
+//				int valutazione = faker.number().numberBetween(1, 5);
+//				String commento = faker.lorem().sentence(10);
+//
+//				Recensione recensione = new Recensione(valutazione, commento, user, gastronomia);
+//				rp.save(recensione);
+//			}
+//		}
+//
+//		System.out.println("Recensioni create");
 //	}
 //}

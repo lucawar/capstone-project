@@ -29,6 +29,7 @@ import lombok.NoArgsConstructor;
 import lucaguerra.enums.Role;
 import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.Prenotazione;
+import lucaguerra.recensione.Recensione;
 
 @SuppressWarnings("serial")
 @Entity
@@ -57,6 +58,9 @@ public class User implements UserDetails {
 	@ManyToMany
 	@JoinTable(name = "user_gastronomia_preferito", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "gastronomia_id"))
 	private List<Gastronomia> gastronomie_preferite = new ArrayList<>();
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonManagedReference
+	private List<Recensione> recensioni = new ArrayList<>();
 
 	@SuppressWarnings("static-access")
 	public User(String username, String name, String surname, String email, String password, String numeroTelefono) {

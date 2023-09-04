@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.PrenotazioneService;
 
 @RestController
@@ -64,6 +65,10 @@ public class UsersController {
 		userService.findByIdAndDelete(userId);
 	}
 
+	// ---------------METODI PER I PREFERITI DELLO USER------------
+
+//	Usiamo ResponseEntity<?> perchè ho bisogno di una risposta dinamica, è una classe che rappresenta l'intera risposta HTTP
+
 	// AGGIUNGI GASTRONOMIA AI PREFERITI USER
 	@PostMapping("/aggiungiPreferiti/{gastronomiaId}")
 	public ResponseEntity<?> addFavorite(@PathVariable UUID gastronomiaId) {
@@ -78,4 +83,12 @@ public class UsersController {
 		return ResponseEntity.ok("Gastronomia rimossa dai preferiti");
 	}
 
+	// TORNA LA LISTA DELLE GASTRONOMIE PREFERITE
+	@GetMapping("/preferiti")
+	public ResponseEntity<Page<Gastronomia>> getUserPreferiti(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+
+		Page<Gastronomia> favorites = userService.getUsergGastronomiePreferite(page, size);
+		return ResponseEntity.ok(favorites);
+	}
 }

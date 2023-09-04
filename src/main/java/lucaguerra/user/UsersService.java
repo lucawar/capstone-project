@@ -86,6 +86,8 @@ public class UsersService {
 				.orElseThrow(() -> new NotFoundException("Utente con email " + currentUserName + " non trovato"));
 	}
 
+	// -----------METODI PER LE GASTRONOMIE PREFERITE DELL'UTENTE-----------
+
 	// AGGIUNGI GASTRONOMIA AI PREFERITI
 	public void addFavoriteGastronomia(UUID gastronomiaId) {
 		User user = this.getCurrentUser();
@@ -106,4 +108,16 @@ public class UsersService {
 		userRepository.save(user);
 	}
 
+	// TORNA LA LISTA DELLE GASTRONOMIE PREFERITE
+	public Page<Gastronomia> getUsergGastronomiePreferite(int page, int size) {
+		User currentUser = getCurrentUser();
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Gastronomia> favorites = userRepository.findFavoriteGastronomiesByUserId(currentUser.getId(), pageable);
+
+		if (favorites.isEmpty()) {
+			throw new NotFoundException("La tua lista dei preferiti è vuota");
+		}
+
+		return favorites;
+	}
 }
