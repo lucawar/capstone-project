@@ -54,14 +54,12 @@ public class PrenotazioneController {
 	}
 
 	@PutMapping("/{gastronomiaId}")
-	@PreAuthorize("hasAuthority('ADMIN')")
 	public Prenotazione updatePrenotazione(@PathVariable UUID prenotazioneId,
 			@RequestBody NewPrenotazionePayload body) {
 		return ps.findByIdAndUpdate(prenotazioneId, body);
 	}
 
 	@DeleteMapping("/{gastronomiaId}")
-	@PreAuthorize("hasAuthority('ADMIN')")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletePrenotazione(@PathVariable UUID prenotazioneId) {
 		ps.findByIdAndDelete(prenotazioneId);
