@@ -1,5 +1,6 @@
 package lucaguerra.prenotazione;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,14 @@ public class PrenotazioneController {
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
 		User utenteAutenticato = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return ps.trovaPrenotazioniPerUtente(utenteAutenticato.getId(), page, size, sortBy);
+	}
+
+	// FILTRA LE PRENOTAZIONI DI UN UTENTE LOGGATO PER DATA
+	@GetMapping("/my/data")
+	public Page<Prenotazione> getMyPrenotazioniByDate(@RequestParam LocalDate dataPrenotazione,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		User utenteAutenticato = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return ps.findUserPrenotazioniByDate(utenteAutenticato.getId(), dataPrenotazione, page, size);
 	}
 
 }

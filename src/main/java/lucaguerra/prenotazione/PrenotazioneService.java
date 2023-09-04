@@ -1,5 +1,6 @@
 package lucaguerra.prenotazione;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,10 +63,22 @@ public class PrenotazioneService {
 	// GESTIRE LE ECCEZIONI, RICONTROLLARE NotFoundException
 
 	// TROVA SOLO PRENOTAZIONI DELL'UTENTE LOGGATO
-	public Page<Prenotazione> trovaPrenotazioniPerUtente(UUID userId, int page, int size, String sortBy) {
+	public Page<Prenotazione> trovaPrenotazioniPerUtente(UUID userId, int page, int size, String sortBy)
+			throws NotFoundException {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-		return pr.findByUserId(userId, pageable);
+		Page<Prenotazione> prenotazioni = pr.findByUserId(userId, pageable);
 
+		if (prenotazioni.isEmpty()) {
+			throw new NotFoundException("Nessuna prenotazione trovata per l'utente con ID: " + userId);
+		}
+
+		return prenotazioni;
+	}
+
+	// FILTRA PRENOTAZIONI PER DATA SOLO PER L'UTENTE LOGGATO
+	public Page<Prenotazione> findUserPrenotazioniByDate(UUID userId, LocalDate dataPrenotazione, int page, int size) {
+		Pageable pageable = PageRequest.of(page, size, Sort.by("dataPrenotazione"));
+		return pr.findByUserIdAndDataPrenotazione(userId, dataPrenotazione, pageable);
 	}
 
 }
