@@ -64,14 +64,14 @@ public class UsersController {
 		userService.findByIdAndDelete(userId);
 	}
 
-	// AGGIUNGI GASTRONOMIA AI PREFERITI
+	// AGGIUNGI GASTRONOMIA AI PREFERITI USER
 	@PostMapping("/aggiungiPreferiti/{gastronomiaId}")
 	public ResponseEntity<?> addFavorite(@PathVariable UUID gastronomiaId) {
 		userService.addFavoriteGastronomia(gastronomiaId);
 		return ResponseEntity.ok("Gastronomia aggiunta ai preferiti");
 	}
 
-	// RIMUOVI GASTRONOMIA DAI PREFERITI
+	// RIMUOVI GASTRONOMIA DAI PREFERITI USER
 	@DeleteMapping("/rimuoviPreferiti/{gastronomiaId}")
 	public ResponseEntity<?> removeFavorite(@PathVariable UUID gastronomiaId) {
 		userService.removeFavoriteGastronomia(gastronomiaId);

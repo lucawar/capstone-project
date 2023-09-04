@@ -47,19 +47,19 @@ public class PrenotazioneController {
 		return ps.find(page, size, sortBy);
 	}
 
-	@GetMapping("/{gastronomiaId}")
+	@GetMapping("/{prenotazioneId}")
 	@PreAuthorize("hasAuthority('ADMIN')")
 	public Prenotazione findById(@PathVariable UUID gastronomiaId) {
 		return ps.findById(gastronomiaId);
 	}
 
-	@PutMapping("/{gastronomiaId}")
+	@PutMapping("/{prenotazioneId}")
 	public Prenotazione updatePrenotazione(@PathVariable UUID prenotazioneId,
 			@RequestBody NewPrenotazionePayload body) {
 		return ps.findByIdAndUpdate(prenotazioneId, body);
 	}
 
-	@DeleteMapping("/{gastronomiaId}")
+	@DeleteMapping("/{prenotazioneId}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletePrenotazione(@PathVariable UUID prenotazioneId) {
 		ps.findByIdAndDelete(prenotazioneId);
