@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -13,10 +14,12 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lucaguerra.enums.TipoGastronomia;
+import lucaguerra.menu.Menu;
 import lucaguerra.recensione.Recensione;
 
 @Entity
@@ -38,6 +41,9 @@ public class Gastronomia {
 	@OneToMany(mappedBy = "gastronomia", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference
 	private List<Recensione> recensioni = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonBackReference
+	private Menu menu;
 
 	public Gastronomia(String nome, String indirizzo, String telefono, int prezzoMedio, TipoGastronomia tipoGastronomia,
 			String imageUrl) {

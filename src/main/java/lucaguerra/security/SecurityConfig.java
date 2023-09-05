@@ -34,6 +34,9 @@ public class SecurityConfig {
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/users/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/gastronomia/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/prenotazioni/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/recensioni/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/menu/**").authenticated());
+		http.authorizeHttpRequests(auth -> auth.requestMatchers("/menuElementi/**").authenticated());
 		http.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/**").permitAll());
 
 		http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);

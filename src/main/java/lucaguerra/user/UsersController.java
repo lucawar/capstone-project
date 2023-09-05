@@ -1,5 +1,6 @@
 package lucaguerra.user;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lucaguerra.gastronomia.Gastronomia;
+import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneService;
+import lucaguerra.recensione.Recensione;
 
 @RestController
 @RequestMapping("/users")
@@ -90,5 +93,26 @@ public class UsersController {
 
 		Page<Gastronomia> favorites = userService.getUsergGastronomiePreferite(page, size);
 		return ResponseEntity.ok(favorites);
+	}
+
+	// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
+	@GetMapping("/myRecensioni")
+	public Page<Recensione> getMyRecensioni(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		return userService.getUserRecensioni(page, size);
+	}
+
+	// TORNA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO
+	@GetMapping("/myPrenotazioni")
+	public Page<Prenotazione> getMiePrenotazioni(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+		return userService.trovaPrenotazioniPerUtente(page, size, sortBy);
+	}
+
+	// FILTRA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO
+	@GetMapping("/myPrenotazioni/data")
+	public Page<Prenotazione> getMiePrenotazioniByDate(@RequestParam LocalDate dataPrenotazione,
+			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+		return userService.findUserPrenotazioniByDate(dataPrenotazione, page, size);
 	}
 }

@@ -1,12 +1,11 @@
 //package lucaguerra;
 //
-//import java.time.LocalDate;
-//import java.time.LocalTime;
 //import java.util.List;
 //import java.util.Locale;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.CommandLineRunner;
+//import org.springframework.core.annotation.Order;
 //import org.springframework.stereotype.Component;
 //
 //import com.github.javafaker.Faker;
@@ -14,16 +13,13 @@
 //import lucaguerra.enums.TipoGastronomia;
 //import lucaguerra.gastronomia.Gastronomia;
 //import lucaguerra.gastronomia.GastronomiaRepository;
-//import lucaguerra.prenotazione.Prenotazione;
-//import lucaguerra.prenotazione.PrenotazioneRepository;
-//import lucaguerra.recensione.Recensione;
-//import lucaguerra.recensione.RecensioneRepository;
 //import lucaguerra.security.AuthController;
 //import lucaguerra.user.NewUserPayload;
 //import lucaguerra.user.User;
 //import lucaguerra.user.UserRepository;
 //
 //@Component
+//@Order(1)
 //public class Runner implements CommandLineRunner {
 //
 //	@Autowired
@@ -33,19 +29,14 @@
 //	AuthController ac;
 //
 //	@Autowired
-//	UserRepository us;
-//
-//	@Autowired
-//	PrenotazioneRepository pr;
-//
-//	@Autowired
-//	RecensioneRepository rp;
+//	UserRepository ur;
 //
 //	@Override
 //	public void run(String... args) throws Exception {
 //		Faker faker = new Faker(new Locale("it"));
 //
-//		List<User> utentiDb = us.findAll();
+//		// CREA UTENTI
+//		List<User> utentiDb = ur.findAll();
 //		if (utentiDb.isEmpty()) {
 //
 //			for (int i = 0; i < 10; i++) {
@@ -63,6 +54,7 @@
 //			System.out.println("User creati");
 //		}
 //
+//		// CREA GASTRONOMIE
 //		for (int i = 0; i < 10; i++) {
 //			String nome = faker.name().fullName();
 //			String indirizzo = faker.address().fullAddress();
@@ -78,30 +70,5 @@
 //		}
 //		System.out.println("Gastronomie create");
 //
-//		for (
-//
-//		User user : utentiDb) {
-//			Gastronomia randomGastronomia = gastronomiaRepository.findAll().get(faker.random().nextInt(10));
-//			LocalDate randomDate = LocalDate.now().plusDays(faker.random().nextInt(30)); //
-//			LocalTime randomTime = LocalTime.of(faker.random().nextInt(24), faker.random().nextInt(60));
-//
-//			Prenotazione prenotazione = new Prenotazione(randomDate, randomTime, "Nota di prova", user,
-//					randomGastronomia);
-//			pr.save(prenotazione);
-//		}
-//
-//		System.out.println("Prenotazioni create");
-//
-//		for (User user : utentiDb) {
-//			for (Gastronomia gastronomia : gastronomiaRepository.findAll()) {
-//				int valutazione = faker.number().numberBetween(1, 5);
-//				String commento = faker.lorem().sentence(10);
-//
-//				Recensione recensione = new Recensione(valutazione, commento, user, gastronomia);
-//				rp.save(recensione);
-//			}
-//		}
-//
-//		System.out.println("Recensioni create");
 //	}
 //}

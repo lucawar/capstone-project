@@ -2,6 +2,8 @@ package lucaguerra.recensione;
 
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -24,8 +26,10 @@ public class Recensione {
 	private int valutazione;
 	private String commento;
 	@ManyToOne
+	@JsonBackReference(value = "user-recensione")
 	private User user;
 	@ManyToOne
+	@JsonBackReference(value = "gastronomia-recensione")
 	private Gastronomia gastronomia;
 
 	public Recensione(int valutazione, String commento, User user, Gastronomia gastronomia) {
