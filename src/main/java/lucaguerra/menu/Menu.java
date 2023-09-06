@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -27,7 +28,7 @@ public class Menu {
 	@GeneratedValue
 	private UUID id;
 	@OneToOne(mappedBy = "menu")
-	@JsonManagedReference
+	@JsonBackReference
 	private Gastronomia gastronomia;
 	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonManagedReference

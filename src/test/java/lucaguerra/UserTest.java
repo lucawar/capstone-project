@@ -34,7 +34,8 @@ public class UserTest {
 	public void testPayloadNonValido() throws Exception {
 		NewUserPayload PayloadNonValido = new NewUserPayload("", "", "", "lucaemail.it", "luca", "39+324345543");
 
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ZjIxOGQ2Yy1mMzA3LTRmYTQtYjZjNC02NmEyNjg1NjVmZmUiLCJpYXQiOjE2OTM2MDg3NjQsImV4cCI6MTY5NDIxMzU2NH0.nIqeE7FFImI-JLj4xdSSgsmjpEz7ZWoo21URh1GTHe4";
+		// PASSARE SEMPRE UN TOKEN VALIDO PER VERIFICARE I TEST
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzODFmMGIyOS0xMzg2LTRiNmEtYTNkNS04ZGE0NzRlOGRhNWEiLCJpYXQiOjE2OTM5NDg1ODIsImV4cCI6MTY5NDU1MzM4Mn0.U4ewQ0PjzmuioONDoV3aZkVbzcfDSf-p7BZXw-ziby0";
 
 		MvcResult risultato = mockMvc.perform(post("/users").header("Authorization", "Bearer " + token)
 				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(PayloadNonValido)))
@@ -54,7 +55,8 @@ public class UserTest {
 		NewUserPayload PayloadValido = new NewUserPayload("lucaGuerra", "Luca", "Guerra", "luca.guerra@yahoo.it",
 				"StrongPassword123!", "39+324345543");
 
-		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI5ZjIxOGQ2Yy1mMzA3LTRmYTQtYjZjNC02NmEyNjg1NjVmZmUiLCJpYXQiOjE2OTM2MDg3NjQsImV4cCI6MTY5NDIxMzU2NH0.nIqeE7FFImI-JLj4xdSSgsmjpEz7ZWoo21URh1GTHe4";
+		// PASSARE SEMPRE UN TOKEN VALIDO PER VERIFICARE I TEST
+		String token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzODFmMGIyOS0xMzg2LTRiNmEtYTNkNS04ZGE0NzRlOGRhNWEiLCJpYXQiOjE2OTM5NDg1ODIsImV4cCI6MTY5NDU1MzM4Mn0.U4ewQ0PjzmuioONDoV3aZkVbzcfDSf-p7BZXw-ziby0";
 
 		MvcResult risultato = mockMvc.perform(post("/users").header("Authorization", "Bearer " + token)
 				.contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(PayloadValido)))

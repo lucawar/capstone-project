@@ -26,10 +26,10 @@ public class Recensione {
 	private int valutazione;
 	private String commento;
 	@ManyToOne
-	@JsonBackReference(value = "user-recensione")
+	@JsonBackReference
 	private User user;
 	@ManyToOne
-	@JsonBackReference(value = "gastronomia-recensione")
+	@JsonBackReference
 	private Gastronomia gastronomia;
 
 	public Recensione(int valutazione, String commento, User user, Gastronomia gastronomia) {
