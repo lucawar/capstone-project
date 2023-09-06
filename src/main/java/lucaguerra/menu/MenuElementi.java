@@ -2,8 +2,6 @@ package lucaguerra.menu;
 
 import java.util.UUID;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -30,7 +28,7 @@ public class MenuElementi {
 	@Enumerated(EnumType.STRING)
 	private TipoCategoriaSezioneMenu categoria;
 	@ManyToOne
-	@JsonBackReference
+//	@JsonBackReference
 	private Menu menu;
 
 	public MenuElementi(String nome, int prezzo, String descrizione, TipoCategoriaSezioneMenu categoria, Menu menu) {

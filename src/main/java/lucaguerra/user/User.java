@@ -9,8 +9,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,13 +30,13 @@ import lombok.NoArgsConstructor;
 import lucaguerra.enums.Role;
 import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.Prenotazione;
-import lucaguerra.recensione.Recensione;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "users")
 @Data
 @NoArgsConstructor
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User implements UserDetails {
 
 	@Id
@@ -53,14 +54,15 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
+//	@JsonManagedReference
 	private List<Prenotazione> prenotazioni = new ArrayList<>();
 	@ManyToMany
 	@JoinTable(name = "user_gastronomia_preferito", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "gastronomia_id"))
 	private List<Gastronomia> gastronomie_preferite = new ArrayList<>();
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-	@JsonManagedReference
-	private List<Recensione> recensioni = new ArrayList<>();
+
+//	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	@JsonManagedReference
+//	private List<Recensione> recensioni = new ArrayList<>();
 
 	@SuppressWarnings("static-access")
 	public User(String username, String name, String surname, String email, String password, String numeroTelefono) {

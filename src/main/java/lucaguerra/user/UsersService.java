@@ -19,8 +19,6 @@ import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.gastronomia.GastronomiaRepository;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneRepository;
-import lucaguerra.recensione.Recensione;
-import lucaguerra.recensione.RecensioneRepository;
 
 @Service
 public class UsersService {
@@ -34,8 +32,8 @@ public class UsersService {
 	@Autowired
 	GastronomiaRepository gr;
 
-	@Autowired
-	RecensioneRepository rr;
+//	@Autowired
+//	RecensioneRepository rr;
 
 	// SALVA NUOVO UTENTE + ECCEZIONE SE VIENE USATA LA STESSA EMAIL
 	public User save(NewUserPayload body) {
@@ -159,18 +157,18 @@ public class UsersService {
 		return prenotazioni;
 	}
 
-	// ----------METODI PER LE RECENSIONI DELLO USER----------
+// ----------METODI PER LE RECENSIONI DELLO USER----------
 
-	// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
-	public Page<Recensione> getUserRecensioni(int page, int size) {
-		User currentUser = getCurrentUser();
-		Pageable pageable = PageRequest.of(page, size);
-		Page<Recensione> userRecensioni = rr.findByUserId(currentUser.getId(), pageable);
-
-		if (userRecensioni.isEmpty()) {
-			throw new NotFoundException("Non hai ancora scritto recensioni");
-		}
-
-		return userRecensioni;
-	}
+// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
+//	public Page<Recensione> getUserRecensioni(int page, int size) {
+//		User currentUser = getCurrentUser();
+//		Pageable pageable = PageRequest.of(page, size);
+//		Page<Recensione> userRecensioni = rr.findByUserId(currentUser.getId(), pageable);
+//
+//		if (userRecensioni.isEmpty()) {
+//			throw new NotFoundException("Non hai ancora scritto recensioni");
+//		}
+//
+//		return userRecensioni;
+//	}
 }
