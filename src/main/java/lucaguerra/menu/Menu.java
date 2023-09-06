@@ -7,16 +7,13 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lucaguerra.gastronomia.Gastronomia;
 
 @Entity
 @Table(name = "menu")
@@ -28,17 +25,26 @@ public class Menu {
 	@Id
 	@GeneratedValue
 	private UUID id;
-	@OneToOne(mappedBy = "menu")
-//	@JsonBackReference
-	private Gastronomia gastronomia;
-	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JsonManagedReference //modificato
-	private List<MenuElementi> elementi = new ArrayList<>();
+	private String nome;
 
-	public Menu(Gastronomia gastronomia, List<MenuElementi> elementi) {
+	@OneToMany(mappedBy = "menu", orphanRemoval = true)
+	private List<MenuElementi> antipasti = new ArrayList<>();
 
-		this.gastronomia = gastronomia;
-		this.elementi = elementi;
+	@OneToMany(mappedBy = "menu", orphanRemoval = true)
+	private List<MenuElementi> primi = new ArrayList<>();
+
+	@OneToMany(mappedBy = "menu", orphanRemoval = true)
+	private List<MenuElementi> secondi = new ArrayList<>();
+
+	@OneToMany(mappedBy = "menu", orphanRemoval = true)
+	private List<MenuElementi> desserts = new ArrayList<>();
+
+	@OneToMany(mappedBy = "menu", orphanRemoval = true)
+	private List<MenuElementi> bevande = new ArrayList<>();
+
+	public Menu(String nome) {
+
+		this.nome = nome;
 	}
 
 }

@@ -21,7 +21,7 @@ public class MenuService {
 	// SALVA NUOVO MENU
 	public Menu save(NewMenuPayload body) {
 
-		Menu newMenu = new Menu(body.getGastronomia(), body.getElementi());
+		Menu newMenu = new Menu(body.getNome());
 		return mr.save(newMenu);
 	}
 
@@ -45,8 +45,7 @@ public class MenuService {
 	// CERCA E MODIFICA PRENOTAZIONE TRAMITE ID
 	public Menu findByIdAndUpdate(UUID id, NewMenuPayload body) throws NotFoundException {
 		Menu found = this.findById(id);
-		found.setGastronomia(body.getGastronomia());
-		found.setElementi(body.getElementi());
+		found.setNome(body.getNome());
 		return mr.save(found);
 	}
 

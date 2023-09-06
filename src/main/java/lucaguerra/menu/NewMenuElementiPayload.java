@@ -3,10 +3,11 @@ package lucaguerra.menu;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lucaguerra.enums.TipoCategoriaSezioneMenu;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class NewMenuElementiPayload {
 
 	@NotNull(message = "Il nome è obbligatorio")
@@ -15,8 +16,6 @@ public class NewMenuElementiPayload {
 	private int prezzo;
 	@NotNull(message = "La descrizione è obbligatoria")
 	private String descrizione;
-	@NotNull(message = "Il tipo di categoria è obbligatoria")
-	private TipoCategoriaSezioneMenu categoria;
 	@NotNull(message = "Il menu è obbligatoria")
 	private Menu menu;
 }

@@ -22,7 +22,7 @@ public class MenuElementiService {
 	public MenuElementi save(NewMenuElementiPayload body) {
 
 		MenuElementi newMenuElementi = new MenuElementi(body.getNome(), body.getPrezzo(), body.getDescrizione(),
-				body.getCategoria(), body.getMenu());
+				body.getMenu());
 		return mer.save(newMenuElementi);
 	}
 
@@ -49,7 +49,6 @@ public class MenuElementiService {
 		found.setNome(body.getNome());
 		found.setPrezzo(body.getPrezzo());
 		found.setDescrizione(body.getDescrizione());
-		found.setCategoria(body.getCategoria());
 		found.setMenu(body.getMenu());
 		return mer.save(found);
 	}

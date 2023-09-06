@@ -40,7 +40,6 @@ public class Gastronomia {
 //	@JsonManagedReference //modificato
 //	private List<Recensione> recensioni = new ArrayList<>();
 	@OneToOne(cascade = CascadeType.ALL)
-//	@JsonManagedReference
 	private Menu menu;
 
 	public Gastronomia(String nome, String indirizzo, String telefono, int prezzoMedio, TipoGastronomia tipoGastronomia,
@@ -54,8 +53,4 @@ public class Gastronomia {
 		this.imageUrl = imageUrl;
 	}
 
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-		menu.setGastronomia(this);
-	}
 }
