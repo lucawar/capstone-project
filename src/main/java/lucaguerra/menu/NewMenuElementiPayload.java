@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lucaguerra.enums.TipoPiatto;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,8 @@ public class NewMenuElementiPayload {
 	private int prezzo;
 	@NotNull(message = "La descrizione è obbligatoria")
 	private String descrizione;
-	@NotNull(message = "Il menu è obbligatoria")
+	@NotNull(message = "Il tipo è obbligatorio")
+	private TipoPiatto tipoPiatto;
+	@NotNull(message = "Il menu è obbligatorio")
 	private Menu menu;
 }

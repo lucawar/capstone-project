@@ -55,7 +55,6 @@ public class User implements UserDetails {
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JsonManagedReference
 	private List<Prenotazione> prenotazioni = new ArrayList<>();
 	@ManyToMany
 	@JoinTable(name = "user_gastronomia_preferito", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "gastronomia_id"))
@@ -82,7 +81,7 @@ public class User implements UserDetails {
 		if (this.role != null) {
 			return List.of(new SimpleGrantedAuthority(role.name()));
 		}
-		// Restituisci una lista vuota o altra logica di fallback se role è null.
+
 		return Collections.emptyList();
 	}
 

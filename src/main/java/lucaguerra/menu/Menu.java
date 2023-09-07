@@ -26,19 +26,6 @@ public class Menu {
 	@GeneratedValue
 	private UUID id;
 	private String nome;
-
-	@OneToMany(mappedBy = "menu", orphanRemoval = true)
-	private List<MenuElementi> antipasti = new ArrayList<>();
-
-	@OneToMany(mappedBy = "menu", orphanRemoval = true)
-	private List<MenuElementi> primi = new ArrayList<>();
-
-	@OneToMany(mappedBy = "menu", orphanRemoval = true)
-	private List<MenuElementi> secondi = new ArrayList<>();
-
-	@OneToMany(mappedBy = "menu", orphanRemoval = true)
-	private List<MenuElementi> desserts = new ArrayList<>();
-
 	@OneToMany(mappedBy = "menu", orphanRemoval = true)
 	private List<MenuElementi> bevande = new ArrayList<>();
 
