@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneService;
+import lucaguerra.recensione.Recensione;
 
 @RestController
 @RequestMapping("/users")
@@ -94,12 +95,12 @@ public class UsersController {
 		return ResponseEntity.ok(favorites);
 	}
 
-	// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
-//	@GetMapping("/myRecensioni")
-//	public Page<Recensione> getMyRecensioni(@RequestParam(defaultValue = "0") int page,
-//			@RequestParam(defaultValue = "10") int size) {
-//		return userService.getUserRecensioni(page, size);
-//	}
+//	 TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
+	@GetMapping("/myRecensioni")
+	public Page<Recensione> getMyRecensioni(@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size) {
+		return userService.getUserRecensioni(page, size);
+	}
 
 	// TORNA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO
 	@GetMapping("/myPrenotazioni")
