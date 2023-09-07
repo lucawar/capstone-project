@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import lucaguerra.gastronomia.Gastronomia;
+import lucaguerra.prenotazione.NewUserPrenotazioniPayload;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneService;
 import lucaguerra.recensione.Recensione;
@@ -95,18 +96,27 @@ public class UsersController {
 		return ResponseEntity.ok(favorites);
 	}
 
-//	 TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
+	// METODI RECENSIONI
+
+	// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
 	@GetMapping("/myRecensioni")
 	public Page<Recensione> getMyRecensioni(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size) {
 		return userService.getUserRecensioni(page, size);
 	}
 
+	// METODI PRENOTAZIONI
+	@PostMapping("/prenotazioni")
+	@ResponseStatus(HttpStatus.CREATED)
+	public Prenotazione creaPrenotazionePerUtenteLoggato(@RequestBody @Validated NewUserPrenotazioniPayload body) {
+		return userService.creaPrenotazionePerUtenteLoggato(body);
+	}
+
 	// TORNA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO
 	@GetMapping("/myPrenotazioni")
 	public Page<Prenotazione> getMiePrenotazioni(@RequestParam(defaultValue = "0") int page,
 			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
-		return userService.trovaPrenotazioniPerUtente(page, size, sortBy);
+		return userService.getPrenotazioniPerUtente(page, size, sortBy);
 	}
 
 	// FILTRA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO

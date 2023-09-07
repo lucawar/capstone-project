@@ -17,6 +17,7 @@ import lucaguerra.exceptions.BadRequestException;
 import lucaguerra.exceptions.NotFoundException;
 import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.gastronomia.GastronomiaRepository;
+import lucaguerra.prenotazione.NewUserPrenotazioniPayload;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneRepository;
 import lucaguerra.recensione.Recensione;
@@ -130,8 +131,22 @@ public class UsersService {
 
 	// -----------METODI PER LE PRENOTAZIONI DELLO USER-----------
 
+	// METODO PER CREARE UNA PRENOTAZIONE PER L'UTENTE LOGGATO
+	public Prenotazione creaPrenotazionePerUtenteLoggato(NewUserPrenotazioniPayload body) {
+		User utenteAutenticato = getCurrentUser();
+
+		Prenotazione newPrenotazione = new Prenotazione();
+		newPrenotazione.setDataPrenotazione(body.getDataPrenotazione());
+		newPrenotazione.setOraPrenotazione(body.getOraPrenotazione());
+		newPrenotazione.setNota(body.getNota());
+		newPrenotazione.setUser(utenteAutenticato); // IMPOSTA UTENTE AUTENTICATO COME UTENTE DELLA PRENOTAZIONE
+		newPrenotazione.setGastronomia(body.getGastronomia());
+
+		return prenotazioneRepository.save(newPrenotazione);
+	}
+
 	// TORNA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO
-	public Page<Prenotazione> trovaPrenotazioniPerUtente(int page, int size, String sortBy) {
+	public Page<Prenotazione> getPrenotazioniPerUtente(int page, int size, String sortBy) {
 		User utenteAutenticato = getCurrentUser();
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 		Page<Prenotazione> prenotazioni = prenotazioneRepository.findByUserId(utenteAutenticato.getId(), pageable);
