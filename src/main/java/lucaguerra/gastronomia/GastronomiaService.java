@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.exceptions.NotFoundException;
+import lucaguerra.menu.Menu;
 
 @Service
 public class GastronomiaService {
@@ -67,6 +68,12 @@ public class GastronomiaService {
 			Integer prezzoMax, int page, int size, String sortBy) throws NotFoundException {
 		Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
 		return gr.searchGastronomia(nome, tipo, indirizzo, prezzoMin, prezzoMax, pageable);
+	}
+
+	// TORNA LA LISTA DEL MENU DI UNA GASTRONOMIA
+	public Menu findMenuByGastronomia(UUID gastronomiaId) throws NotFoundException {
+		Gastronomia gastronomia = this.findById(gastronomiaId);
+		return gastronomia.getMenu();
 	}
 
 }

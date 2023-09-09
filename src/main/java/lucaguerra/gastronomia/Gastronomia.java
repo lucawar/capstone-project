@@ -53,4 +53,7 @@ public class Gastronomia {
 		this.imageUrl = imageUrl;
 	}
 
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
 }

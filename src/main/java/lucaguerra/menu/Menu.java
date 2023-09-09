@@ -27,7 +27,7 @@ public class Menu {
 	private UUID id;
 	private String nome;
 	@OneToMany(mappedBy = "menu", orphanRemoval = true)
-	private List<MenuElementi> bevande = new ArrayList<>();
+	private List<MenuElementi> piatti = new ArrayList<>();
 
 	public Menu(String nome) {
 
