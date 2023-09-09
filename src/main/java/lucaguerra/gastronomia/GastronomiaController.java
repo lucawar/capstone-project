@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.exceptions.NotFoundException;
+import lucaguerra.menu.MenuService;
 
 @RestController
 @RequestMapping("/gastronomia")
@@ -27,6 +28,9 @@ public class GastronomiaController {
 
 	@Autowired
 	GastronomiaService gs;
+
+	@Autowired
+	MenuService menuService;
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
@@ -58,6 +62,12 @@ public class GastronomiaController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteGastronomia(@PathVariable UUID gastronomiaId) {
 		gs.findByIdAndDelete(gastronomiaId);
+	}
+
+	@PostMapping("/{gastronomiaId}/menu/{menuId}")
+	public Gastronomia assignMenuToGastronomia(@PathVariable UUID gastronomiaId, @PathVariable UUID menuId)
+			throws NotFoundException {
+		return menuService.assegnaMenuToGastronomia(gastronomiaId, menuId);
 	}
 
 	// RICERCA PER NOME,TIPO,INDIRIZZO,RANGE DI PREZZO e ORDINA PER PREZZO MEDIO

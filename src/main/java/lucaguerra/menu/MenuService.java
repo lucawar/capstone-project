@@ -11,12 +11,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lucaguerra.exceptions.NotFoundException;
+import lucaguerra.gastronomia.Gastronomia;
+import lucaguerra.gastronomia.GastronomiaRepository;
 
 @Service
 public class MenuService {
 
 	@Autowired
 	MenuRepository mr;
+
+	@Autowired
+	GastronomiaRepository gastonomiaRepository;
 
 	// SALVA NUOVO MENU
 	public Menu save(NewMenuPayload body) {
@@ -42,17 +47,27 @@ public class MenuService {
 		return mr.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
 
-	// CERCA E MODIFICA PRENOTAZIONE TRAMITE ID
+	// CERCA E MODIFICA MENU TRAMITE ID
 	public Menu findByIdAndUpdate(UUID id, NewMenuPayload body) throws NotFoundException {
 		Menu found = this.findById(id);
 		found.setNome(body.getNome());
 		return mr.save(found);
 	}
 
-	// CANCELLA PRENOTAZIONE TRAMITE ID
+	// CANCELLA MENU TRAMITE ID
 	public void findByIdAndDelete(UUID id) throws NotFoundException {
 		Menu found = this.findById(id);
 		mr.delete(found);
 
 	}
+
+	// AGGIUNGI MENU A GASTRONOMIA
+	public Gastronomia assegnaMenuToGastronomia(UUID gastronomiaId, UUID menuId) throws NotFoundException {
+		Gastronomia gastronomia = gastonomiaRepository.findById(gastronomiaId)
+				.orElseThrow(() -> new NotFoundException(gastronomiaId));
+		Menu menu = mr.findById(menuId).orElseThrow(() -> new NotFoundException(menuId));
+		gastronomia.setMenu(menu);
+		return gastonomiaRepository.save(gastronomia);
+	}
+
 }
