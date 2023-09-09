@@ -63,7 +63,7 @@ public class Runner implements CommandLineRunner {
 //			int prezzoMedio = faker.number().randomDigit();
 //			TipoGastronomia tipoGastronomia = TipoGastronomia.values()[faker.random()
 //					.nextInt(TipoGastronomia.values().length)];
-//			String imageUrl = faker.internet().avatar();
+//			String imageUrl = "https://www.localiroma.org/wp-content/uploads/2021/12/Pranzo-vista-Colosseo-Roma-10-indirizzi-1.jpg";
 //
 //			Gastronomia gastronomia = new Gastronomia(nome, indirizzo, telefono, prezzoMedio, tipoGastronomia,
 //					imageUrl);
