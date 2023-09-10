@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import lucaguerra.exceptions.NotFoundException;
 import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.NewUserPrenotazioniPayload;
 import lucaguerra.prenotazione.Prenotazione;
@@ -124,5 +125,16 @@ public class UsersController {
 	public Page<Prenotazione> getMiePrenotazioniByDate(@RequestParam LocalDate dataPrenotazione,
 			@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
 		return userService.findUserPrenotazioniByDate(dataPrenotazione, page, size);
+	}
+
+	// TORNA PARAMETRI DELL'UTENTE LOGGATO
+	@GetMapping("/current")
+	public ResponseEntity<User> getCurrentUser() {
+		try {
+			User currentUser = userService.getCurrentUser();
+			return new ResponseEntity<>(currentUser, HttpStatus.OK);
+		} catch (NotFoundException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }
