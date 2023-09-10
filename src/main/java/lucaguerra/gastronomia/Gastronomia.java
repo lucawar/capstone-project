@@ -1,5 +1,7 @@
 package lucaguerra.gastronomia;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -18,6 +20,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.menu.Menu;
+import lucaguerra.recensione.Recensione;
 
 @Entity
 @Table(name = "gastronomia")
@@ -37,8 +40,7 @@ public class Gastronomia {
 	private TipoGastronomia tipoGastronomia;
 	private String imageUrl;
 	@OneToMany(mappedBy = "gastronomia", cascade = CascadeType.ALL, orphanRemoval = true)
-//	@JsonManagedReference //modificato
-//	private List<Recensione> recensioni = new ArrayList<>();
+	private List<Recensione> recensioni = new ArrayList<>();
 	@OneToOne(cascade = CascadeType.ALL)
 	private Menu menu;
 
