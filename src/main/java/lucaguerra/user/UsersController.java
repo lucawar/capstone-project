@@ -25,6 +25,7 @@ import lucaguerra.gastronomia.Gastronomia;
 import lucaguerra.prenotazione.NewUserPrenotazioniPayload;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneService;
+import lucaguerra.recensione.NewUserRecensionePayload;
 import lucaguerra.recensione.Recensione;
 
 @RestController
@@ -99,6 +100,17 @@ public class UsersController {
 
 	// METODI RECENSIONI
 
+	@PostMapping("/gastronomia/{gastronomiaId}/recensioni")
+	public ResponseEntity<Recensione> creaRecensione(@PathVariable UUID gastronomiaId,
+			@RequestBody @Validated NewUserRecensionePayload payload) {
+		try {
+			Recensione nuovaRecensione = userService.creaRecensionePerUtenteLoggato(gastronomiaId, payload);
+			return ResponseEntity.ok(nuovaRecensione);
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().body(null);
+		}
+	}
+
 	// TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
 	@GetMapping("/myRecensioni")
 	public Page<Recensione> getMyRecensioni(@RequestParam(defaultValue = "0") int page,
@@ -107,10 +119,12 @@ public class UsersController {
 	}
 
 	// METODI PRENOTAZIONI
-	@PostMapping("/prenotazioni")
+
+	@PostMapping("/gastronomia/{gastronomiaId}/prenotazioni")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Prenotazione creaPrenotazionePerUtenteLoggato(@RequestBody @Validated NewUserPrenotazioniPayload body) {
-		return userService.creaPrenotazionePerUtenteLoggato(body);
+	public Prenotazione creaPrenotazionePerUtenteLoggato(@PathVariable UUID gastronomiaId,
+			@RequestBody @Validated NewUserPrenotazioniPayload body) {
+		return userService.creaPrenotazionePerUtenteLoggato(gastronomiaId, body);
 	}
 
 	// TORNA LA LISTA DELLE PRENOTAZIONI DEL CLIENTE LOGGATO

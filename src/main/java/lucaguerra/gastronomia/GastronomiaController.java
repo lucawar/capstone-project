@@ -1,5 +1,6 @@
 package lucaguerra.gastronomia;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.exceptions.NotFoundException;
 import lucaguerra.menu.Menu;
 import lucaguerra.menu.MenuService;
+import lucaguerra.recensione.Recensione;
 
 @RestController
 @RequestMapping("/gastronomia")
@@ -86,5 +88,10 @@ public class GastronomiaController {
 	@GetMapping("/{gastronomiaId}/menu")
 	public Menu getMenuByGastronomia(@PathVariable UUID gastronomiaId) throws NotFoundException {
 		return gs.findMenuByGastronomia(gastronomiaId);
+	}
+
+	@GetMapping("/{gastronomiaId}/recensioni")
+	public List<Recensione> getRecensioniByGastronomia(@PathVariable UUID gastronomiaId) throws NotFoundException {
+		return gs.getRecensioniByGastronomia(gastronomiaId);
 	}
 }

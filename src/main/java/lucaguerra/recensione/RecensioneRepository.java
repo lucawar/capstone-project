@@ -11,4 +11,5 @@ import org.springframework.stereotype.Repository;
 public interface RecensioneRepository extends JpaRepository<Recensione, UUID> {
 
 	Page<Recensione> findByUserId(UUID userId, Pageable pageable);
+
 }

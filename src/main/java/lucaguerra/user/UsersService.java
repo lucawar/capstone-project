@@ -20,6 +20,7 @@ import lucaguerra.gastronomia.GastronomiaRepository;
 import lucaguerra.prenotazione.NewUserPrenotazioniPayload;
 import lucaguerra.prenotazione.Prenotazione;
 import lucaguerra.prenotazione.PrenotazioneRepository;
+import lucaguerra.recensione.NewUserRecensionePayload;
 import lucaguerra.recensione.Recensione;
 import lucaguerra.recensione.RecensioneRepository;
 
@@ -132,15 +133,16 @@ public class UsersService {
 	// -----------METODI PER LE PRENOTAZIONI DELLO USER-----------
 
 	// METODO PER CREARE UNA PRENOTAZIONE PER L'UTENTE LOGGATO
-	public Prenotazione creaPrenotazionePerUtenteLoggato(NewUserPrenotazioniPayload body) {
+	public Prenotazione creaPrenotazionePerUtenteLoggato(UUID gastronomiaId, NewUserPrenotazioniPayload body) {
 		User utenteAutenticato = getCurrentUser();
-
+		Gastronomia gastronomia = gr.findById(gastronomiaId)
+				.orElseThrow(() -> new NotFoundException("Gastronomia non trovata con ID: " + gastronomiaId));
 		Prenotazione newPrenotazione = new Prenotazione();
 		newPrenotazione.setDataPrenotazione(body.getDataPrenotazione());
 		newPrenotazione.setOraPrenotazione(body.getOraPrenotazione());
 		newPrenotazione.setNota(body.getNota());
 		newPrenotazione.setUser(utenteAutenticato); // IMPOSTA UTENTE AUTENTICATO COME UTENTE DELLA PRENOTAZIONE
-		newPrenotazione.setGastronomia(body.getGastronomia());
+		newPrenotazione.setGastronomia(gastronomia);
 
 		return prenotazioneRepository.save(newPrenotazione);
 	}
@@ -175,6 +177,22 @@ public class UsersService {
 	}
 
 // ----------METODI PER LE RECENSIONI DELLO USER----------
+
+	// METODO PER CREARE UNA RECENSIONE PER L'UTENTE LOGGATO
+	public Recensione creaRecensionePerUtenteLoggato(UUID gastronomiaId, NewUserRecensionePayload body) {
+		User utenteAutenticato = getCurrentUser();
+		Gastronomia gastronomia = gr.findById(gastronomiaId)
+				.orElseThrow(() -> new NotFoundException("Gastronomia non trovata con l'ID: " + gastronomiaId));
+
+		Recensione nuovaRecensione = new Recensione();
+		nuovaRecensione.setValutazione(body.getValutazione());
+		nuovaRecensione.setCommento(body.getCommento());
+		nuovaRecensione.setUser(utenteAutenticato);
+		nuovaRecensione.setGastronomia(gastronomia);
+		nuovaRecensione.setData(LocalDate.now());
+
+		return rr.save(nuovaRecensione);
+	}
 
 // TORNA LA LISTA DELLE RECENSIONI DEL CLIENTE LOGGATO
 	public Page<Recensione> getUserRecensioni(int page, int size) {

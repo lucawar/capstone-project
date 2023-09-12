@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import lucaguerra.enums.TipoGastronomia;
 import lucaguerra.exceptions.NotFoundException;
 import lucaguerra.menu.Menu;
+import lucaguerra.recensione.Recensione;
 
 @Service
 public class GastronomiaService {
@@ -76,4 +77,12 @@ public class GastronomiaService {
 		return gastronomia.getMenu();
 	}
 
+	// TORNA LA LISTA DELLE RECENSIONI DI UNA GASTRONOMIA
+	public List<Recensione> getRecensioniByGastronomia(UUID gastronomiaId) throws NotFoundException {
+		Gastronomia gastronomia = this.findById(gastronomiaId);
+		if (gastronomia.getRecensioni() == null || gastronomia.getRecensioni().isEmpty()) {
+			throw new NotFoundException("Non ci sono recensioni per questa gastronomia");
+		}
+		return gastronomia.getRecensioni();
+	}
 }
