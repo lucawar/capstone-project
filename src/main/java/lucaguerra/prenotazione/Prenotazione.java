@@ -29,7 +29,6 @@ public class Prenotazione {
 	private String nota;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
-//	@JsonBackReference  //modificato
 	private User user;
 	@ManyToOne
 	@JoinColumn(name = "gastronomia_id", nullable = false)

@@ -72,15 +72,15 @@ public class Runner implements CommandLineRunner {
 //		System.out.println("Gastronomie create");
 //
 //		// CREA MENU
-//		Menu menuOsteriaMimmo = new Menu("Menu Osteria Mimmo");
-//		mr.save(menuOsteriaMimmo);
+//		Menu menuAlfredo = new Menu("Menu 'ALFREDO'");
+//		mr.save(menuAlfredo);
 //
 //		// Crea gli antipasti
 //		for (int i = 0; i < 4; i++) {
 //			String nomeAntipasto = faker.food().ingredient();
 //			String descrizioneAntipasto = faker.lorem().sentence();
 //			mer.save(new MenuElementi(nomeAntipasto, faker.number().numberBetween(5, 15), descrizioneAntipasto,
-//					TipoPiatto.ANTIPASTI, menuOsteriaMimmo));
+//					TipoPiatto.ANTIPASTI, menuAlfredo));
 //		}
 //
 //		// Crea i primi
@@ -88,7 +88,7 @@ public class Runner implements CommandLineRunner {
 //			String nomePrimo = faker.food().dish();
 //			String descrizionePrimo = faker.lorem().sentence();
 //			mer.save(new MenuElementi(nomePrimo, faker.number().numberBetween(10, 20), descrizionePrimo,
-//					TipoPiatto.PRIMI, menuOsteriaMimmo));
+//					TipoPiatto.PRIMI, menuAlfredo));
 //		}
 //
 //		// Crea i secondi
@@ -96,7 +96,7 @@ public class Runner implements CommandLineRunner {
 //			String nomeSecondo = faker.food().sushi();
 //			String descrizioneSecondo = faker.lorem().sentence();
 //			mer.save(new MenuElementi(nomeSecondo, faker.number().numberBetween(15, 25), descrizioneSecondo,
-//					TipoPiatto.SECONDI, menuOsteriaMimmo));
+//					TipoPiatto.SECONDI, menuAlfredo));
 //		}
 //
 //		// Crea i dessert
@@ -104,7 +104,7 @@ public class Runner implements CommandLineRunner {
 //			String nomeDessert = faker.food().vegetable();
 //			String descrizioneDessert = faker.lorem().sentence();
 //			mer.save(new MenuElementi(nomeDessert, faker.number().numberBetween(5, 10), descrizioneDessert,
-//					TipoPiatto.DESSERT, menuOsteriaMimmo));
+//					TipoPiatto.DESSERT, menuAlfredo));
 //		}
 //
 //		// Crea le bevande
@@ -112,7 +112,7 @@ public class Runner implements CommandLineRunner {
 //			String nomeBevanda = faker.beer().name();
 //			String descrizioneBevanda = faker.lorem().sentence();
 //			mer.save(new MenuElementi(nomeBevanda, faker.number().numberBetween(3, 7), descrizioneBevanda,
-//					TipoPiatto.BEVANDE, menuOsteriaMimmo));
+//					TipoPiatto.BEVANDE, menuAlfredo));
 //		}
 //
 //		System.out.println("Menu e elementi del menu creati");

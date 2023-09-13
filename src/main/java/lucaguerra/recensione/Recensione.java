@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Entity;
@@ -32,9 +33,11 @@ public class Recensione {
 	private LocalDate data;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
+	@JsonIgnore
 	private User user;
 	@ManyToOne
 	@JoinColumn(name = "gastronomia_id")
+	@JsonIgnore
 	private Gastronomia gastronomia;
 
 	public Recensione(int valutazione, String commento, User user, Gastronomia gastronomia) {
