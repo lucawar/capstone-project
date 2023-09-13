@@ -36,6 +36,7 @@ public class Gastronomia {
 	private String indirizzo;
 	private String telefono;
 	private int prezzoMedio;
+	private String descrizione;
 	@Enumerated(EnumType.STRING)
 	private TipoGastronomia tipoGastronomia;
 	private String imageUrl;
@@ -44,13 +45,14 @@ public class Gastronomia {
 	@OneToOne(cascade = CascadeType.ALL)
 	private Menu menu;
 
-	public Gastronomia(String nome, String indirizzo, String telefono, int prezzoMedio, TipoGastronomia tipoGastronomia,
-			String imageUrl) {
+	public Gastronomia(String nome, String indirizzo, String telefono, int prezzoMedio, String descrizione,
+			TipoGastronomia tipoGastronomia, String imageUrl) {
 
 		this.nome = nome;
 		this.indirizzo = indirizzo;
 		this.telefono = telefono;
 		this.prezzoMedio = prezzoMedio;
+		this.descrizione = descrizione;
 		this.tipoGastronomia = tipoGastronomia;
 		this.imageUrl = imageUrl;
 	}

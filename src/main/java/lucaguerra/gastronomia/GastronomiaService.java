@@ -25,7 +25,7 @@ public class GastronomiaService {
 	public Gastronomia save(NewGastronomiaPayload body) {
 
 		Gastronomia newGastronomia = new Gastronomia(body.getNome(), body.getIndirizzo(), body.getTelefono(),
-				body.getPrezzoMedio(), body.getTipoGastronomia(), body.getImageUrl());
+				body.getPrezzoMedio(), body.getDescrizione(), body.getTipoGastronomia(), body.getImageUrl());
 		return gr.save(newGastronomia);
 	}
 
@@ -53,6 +53,7 @@ public class GastronomiaService {
 		found.setIndirizzo(body.getIndirizzo());
 		found.setTelefono(body.getTelefono());
 		found.setPrezzoMedio(body.getPrezzoMedio());
+		found.setDescrizione(body.getDescrizione());
 		found.setTipoGastronomia(body.getTipoGastronomia());
 		found.setImageUrl(body.getImageUrl());
 		return gr.save(found);

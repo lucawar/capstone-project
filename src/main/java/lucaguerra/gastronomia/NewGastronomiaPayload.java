@@ -19,6 +19,8 @@ public class NewGastronomiaPayload {
 	@NotNull(message = "Il prezzo medio è obbligatorio")
 	private int prezzoMedio;
 	@NotNull(message = "Il tipo di gastronomia è obbligatorio")
+	private String descrizione;
+	@NotNull(message = "Il tipo di gastronomia è obbligatorio")
 	@Enumerated(EnumType.STRING)
 	private TipoGastronomia tipoGastronomia;
 	private String imageUrl;

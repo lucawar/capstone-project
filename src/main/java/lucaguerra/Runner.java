@@ -61,12 +61,13 @@ public class Runner implements CommandLineRunner {
 //			String indirizzo = faker.address().fullAddress();
 //			String telefono = faker.phoneNumber().phoneNumber();
 //			int prezzoMedio = faker.number().randomDigit();
+//			String descrizione = "descrizione defoult da modificare";
 //			TipoGastronomia tipoGastronomia = TipoGastronomia.values()[faker.random()
 //					.nextInt(TipoGastronomia.values().length)];
 //			String imageUrl = "https://www.localiroma.org/wp-content/uploads/2021/12/Pranzo-vista-Colosseo-Roma-10-indirizzi-1.jpg";
 //
-//			Gastronomia gastronomia = new Gastronomia(nome, indirizzo, telefono, prezzoMedio, tipoGastronomia,
-//					imageUrl);
+//			Gastronomia gastronomia = new Gastronomia(nome, indirizzo, telefono, prezzoMedio, descrizione,
+//					tipoGastronomia, imageUrl);
 //			gastronomiaRepository.save(gastronomia);
 //		}
 //		System.out.println("Gastronomie create");
