@@ -33,9 +33,9 @@ public class MenuController {
 	}
 
 	@GetMapping("")
-	@PreAuthorize("hasAuthority('ADMIN')")
-	public Page<Menu> getPrenotazione(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+//	@PreAuthorize("hasAuthority('ADMIN')")
+	public Page<Menu> getMenu(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "id") String sortBy) {
 		return ms.find(page, size, sortBy);
 	}
 
