@@ -73,7 +73,7 @@ public class Runner implements CommandLineRunner {
 //		System.out.println("Gastronomie create");
 //
 //		// CREA MENU
-//		Menu menuAlfredo = new Menu("Menu 'PERGOLA'");
+//		Menu menuAlfredo = new Menu("Menu 'MADRE'");
 //		mr.save(menuAlfredo);
 //
 //		// Crea gli antipasti
