@@ -40,7 +40,6 @@ public class PrenotazioneController {
 	}
 
 	@GetMapping("/{prenotazioneId}")
-	@PreAuthorize("hasAuthority('ADMIN')")
 	public Prenotazione findById(@PathVariable UUID prenotazioneId) {
 		return ps.findById(prenotazioneId);
 	}

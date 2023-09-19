@@ -27,6 +27,7 @@ public class Prenotazione {
 	private LocalDate dataPrenotazione;
 	private LocalTime oraPrenotazione;
 	private String nota;
+	private int numeroPersone;
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
@@ -34,12 +35,13 @@ public class Prenotazione {
 	@JoinColumn(name = "gastronomia_id", nullable = false)
 	private Gastronomia gastronomia;
 
-	public Prenotazione(LocalDate dataPrenotazione, LocalTime oraPrenotazione, String nota, User user,
-			Gastronomia gastronomia) {
+	public Prenotazione(LocalDate dataPrenotazione, LocalTime oraPrenotazione, String nota, int numeroPersone,
+			User user, Gastronomia gastronomia) {
 
 		this.dataPrenotazione = dataPrenotazione;
 		this.oraPrenotazione = oraPrenotazione;
 		this.nota = nota;
+		this.numeroPersone = numeroPersone;
 		this.user = user;
 		this.gastronomia = gastronomia;
 	}

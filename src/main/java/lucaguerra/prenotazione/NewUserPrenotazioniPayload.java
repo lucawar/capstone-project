@@ -20,5 +20,7 @@ public class NewUserPrenotazioniPayload {
 	private LocalTime oraPrenotazione;
 	@NotNull(message = "La nota è obbligatoria")
 	private String nota;
+	@NotNull(message = "Il numero di persone è obbligatorio")
+	private int numeroPersone;
 	private Gastronomia gastronomia;
 }

@@ -138,12 +138,15 @@ public class UsersService {
 		Gastronomia gastronomia = gr.findById(gastronomiaId)
 				.orElseThrow(() -> new NotFoundException("Gastronomia non trovata con ID: " + gastronomiaId));
 		Prenotazione newPrenotazione = new Prenotazione();
+
 		newPrenotazione.setDataPrenotazione(body.getDataPrenotazione());
 		newPrenotazione.setOraPrenotazione(body.getOraPrenotazione());
 		newPrenotazione.setNota(body.getNota());
+		newPrenotazione.setNumeroPersone(body.getNumeroPersone());
 		newPrenotazione.setUser(utenteAutenticato); // IMPOSTA UTENTE AUTENTICATO COME UTENTE DELLA PRENOTAZIONE
 		newPrenotazione.setGastronomia(gastronomia);
 
+		utenteAutenticato.getPrenotazioni().add(newPrenotazione);
 		return prenotazioneRepository.save(newPrenotazione);
 	}
 

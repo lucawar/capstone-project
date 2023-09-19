@@ -22,7 +22,7 @@ public class PrenotazioneService {
 	public Prenotazione save(NewPrenotazionePayload body) {
 
 		Prenotazione newPrenotazione = new Prenotazione(body.getDataPrenotazione(), body.getOraPrenotazione(),
-				body.getNota(), body.getUser(), body.getGastronomia());
+				body.getNota(), body.getNumeroPersone(), body.getUser(), body.getGastronomia());
 		return pr.save(newPrenotazione);
 	}
 
@@ -48,6 +48,7 @@ public class PrenotazioneService {
 		Prenotazione found = this.findById(id);
 		found.setDataPrenotazione(body.getDataPrenotazione());
 		found.setNota(body.getNota());
+		found.setNumeroPersone(body.getNumeroPersone());
 		return pr.save(found);
 	}
 

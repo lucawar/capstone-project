@@ -49,7 +49,6 @@ public class GastronomiaController {
 	}
 
 	@GetMapping("/{gastronomiaId}")
-	@PreAuthorize("hasAuthority('ADMIN')")
 	public Gastronomia findById(@PathVariable UUID gastronomiaId) {
 		return gs.findById(gastronomiaId);
 	}
