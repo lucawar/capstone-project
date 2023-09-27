@@ -47,6 +47,7 @@ public class PrenotazioneService {
 	public Prenotazione findByIdAndUpdate(UUID id, NewPrenotazionePayload body) throws NotFoundException {
 		Prenotazione found = this.findById(id);
 		found.setDataPrenotazione(body.getDataPrenotazione());
+		found.setOraPrenotazione(body.getOraPrenotazione());
 		found.setNota(body.getNota());
 		found.setNumeroPersone(body.getNumeroPersone());
 		return pr.save(found);

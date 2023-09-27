@@ -44,7 +44,7 @@ public class GastronomiaController {
 
 	@GetMapping("")
 	public Page<Gastronomia> getGastronomia(@RequestParam(defaultValue = "0") int page,
-			@RequestParam(defaultValue = "10") int size, @RequestParam(defaultValue = "id") String sortBy) {
+			@RequestParam(defaultValue = "12") int size, @RequestParam(defaultValue = "id") String sortBy) {
 		return gs.find(page, size, sortBy);
 	}
 

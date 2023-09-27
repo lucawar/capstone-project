@@ -55,8 +55,8 @@ public class Runner implements CommandLineRunner {
 //			System.out.println("User creati");
 //		}
 
-//		// CREA GASTRONOMIE
-//		for (int i = 0; i < 10; i++) {
+//		 CREA GASTRONOMIE
+//		for (int i = 0; i < 4; i++) {
 //			String nome = faker.name().fullName();
 //			String indirizzo = faker.address().fullAddress();
 //			String telefono = faker.phoneNumber().phoneNumber();

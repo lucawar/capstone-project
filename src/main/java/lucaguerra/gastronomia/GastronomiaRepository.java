@@ -13,7 +13,7 @@ import lucaguerra.enums.TipoGastronomia;
 @Repository
 public interface GastronomiaRepository extends JpaRepository<Gastronomia, UUID> {
 
-	@Query("SELECT g FROM Gastronomia g WHERE " + "(?1 IS NULL OR g.nome = ?1) AND "
+	@Query("SELECT g FROM Gastronomia g WHERE " + "(?1 IS NULL OR LOWER(g.nome) LIKE LOWER(CONCAT('%', ?1, '%'))) AND "
 			+ "(?2 IS NULL OR g.tipoGastronomia = ?2) AND " + "(?3 IS NULL OR g.indirizzo = ?3) AND "
 			+ "(?4 IS NULL OR g.prezzoMedio >= ?4) AND " + "(?5 IS NULL OR g.prezzoMedio <= ?5) "
 			+ "ORDER BY g.prezzoMedio")
