@@ -61,5 +61,5 @@ public class Gastronomia {
 		this.menu = menu;
 	}
 
-	//ciao
+
 }
