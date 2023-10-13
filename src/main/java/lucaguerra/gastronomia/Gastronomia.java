@@ -60,4 +60,6 @@ public class Gastronomia {
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+
+	//ciao
 }
